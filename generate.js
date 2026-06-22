@@ -24,7 +24,7 @@ const NUMBERS = {
 // Featured / lead-gen spotlight at the very top of the Agents tab.
 const FEATURED = {
   slug: 'soar', name: 'Soar', url: 'https://www.joinsoar.co',
-  tag: 'Your personal travel advisor. It learns how you travel from your inbox, then plans, books, and manages every trip right in your texts.',
+  tag: 'Your personal travel companion. It learns how you travel from your inbox, then plans, books, and manages every trip right in your texts.',
 };
 
 const AGENTS = [
@@ -39,7 +39,7 @@ const AGENTS = [
     { slug: 'ichatwithgpt', name: 'iChatWithGPT', tag: 'AI in iMessage, via Siri',          url: 'https://ichatwithgpt.com' },
   ]},
   { group: 'Travel', items: [
-    { slug: 'soar', name: 'Soar', tag: 'Your AI travel advisor',     url: 'https://www.joinsoar.co' },
+    { slug: 'soar', name: 'Soar', tag: 'Your AI travel companion',   url: 'https://www.joinsoar.co' },
     { slug: 'miso', name: 'Miso', tag: 'Books your travel by text', url: 'https://www.miso.com' },
   ]},
   { group: 'Dating & Social', items: [
@@ -205,7 +205,7 @@ const html = `<!DOCTYPE html>
   .icon img{width:100%;height:100%;object-fit:cover;display:block}
   .icon .letter{font-size:30px;font-weight:600;color:var(--sec)}
   .name{font-size:15px;font-weight:600;letter-spacing:-0.01em}
-  .tag{font-size:12.5px;color:var(--sec);line-height:1.3;max-width:19ch}
+  .tag{font-size:12.5px;color:var(--sec);line-height:1.3;max-width:19ch;min-height:2.6em}
   .msg{font-size:11px;font-weight:600;color:#fff;background:var(--text);border-radius:980px;padding:5px 13px;letter-spacing:.01em;transition:opacity .2s}
   .msg:hover{opacity:.82}
 
