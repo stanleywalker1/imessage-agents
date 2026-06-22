@@ -13,7 +13,6 @@ const NUMBERS = {
   soar:         '+14242492855',
   orchid:       '+14152999916',
   sidekicks:    '+16282134346',
-  ichatwithgpt: '+17077500773',
   miso:         '+16504054503',
   alfi:         '+13104609758',
   nudge:        '+16452438876',
@@ -36,7 +35,6 @@ const AGENTS = [
     { slug: 'tomo',         name: 'Tomo',         tag: 'AI that lives in your texts',       url: 'https://www.tomo.ai' },
     { slug: 'martin',       name: 'Martin',       tag: 'A Jarvis you can text',             url: 'https://www.trymartin.com' },
     { slug: 'sidekicks',    name: 'Sidekicks',    tag: 'Text an AI on any phone',           url: 'https://sidekicks.chat' },
-    { slug: 'ichatwithgpt', name: 'iChatWithGPT', tag: 'AI in iMessage, via Siri',          url: 'https://ichatwithgpt.com' },
   ]},
   { group: 'Travel', items: [
     { slug: 'soar', name: 'Soar', tag: 'Your AI travel companion',   url: 'https://www.joinsoar.co' },
