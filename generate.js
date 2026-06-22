@@ -10,6 +10,7 @@ const LOGO_DIR = path.join(__dirname, 'assets', 'logos');
 // Public numbers anyone can text directly (E.164). Filled from the research team.
 // slug -> '+1XXXXXXXXXX'
 const NUMBERS = {
+  soar:         '+14242492855',
   orchid:       '+14152999916',
   sidekicks:    '+16282134346',
   ichatwithgpt: '+17077500773',
@@ -141,10 +142,10 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Agents you can text</title>
-<meta name="description" content="A living map of the AI assistants moving into your Messages, and the rails behind them.">
-<meta property="og:title" content="Agents you can text">
-<meta property="og:description" content="A living map of the AI assistants moving into your Messages, and the rails behind them.">
+<title>iMessage Agent Marketplace</title>
+<meta name="description" content="A map of the agents you can text on iOS and the rails behind them.">
+<meta property="og:title" content="iMessage Agent Marketplace">
+<meta property="og:description" content="A map of the agents you can text on iOS and the rails behind them.">
 <style>
   :root{ --bg:#fff; --text:#1d1d1f; --sec:#6e6e73; --line:#d2d2d7; --fill:#f5f5f7; }
   *{box-sizing:border-box}
@@ -156,7 +157,9 @@ const html = `<!DOCTYPE html>
   .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
   header{text-align:center;padding:78px 0 0}
   h1{font-size:clamp(32px,6vw,52px);font-weight:600;letter-spacing:-0.03em;margin:0 0 14px;line-height:1.05}
-  .sub{font-size:clamp(15px,2.4vw,19px);color:var(--sec);margin:0 auto;max-width:40ch}
+  .sub{font-size:clamp(15px,2.4vw,19px);color:var(--sec);margin:0 auto;max-width:44ch}
+  .sublink{color:var(--text);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+  .sublink:hover{opacity:.7}
   .segwrap{text-align:center}
   .seg{display:inline-flex;background:var(--fill);border-radius:980px;padding:3px;margin:38px auto 0;gap:2px}
   .seg button{appearance:none;border:0;background:transparent;color:var(--text);font:inherit;
@@ -219,8 +222,8 @@ const html = `<!DOCTYPE html>
 </head>
 <body>
   <header class="wrap">
-    <h1>Agents you can text</h1>
-    <p class="sub">No app, no download. A living map of the AI assistants moving into your Messages, and the rails behind them.</p>
+    <h1>iMessage Agent Marketplace</h1>
+    <p class="sub">A map of the agents you can text on iOS and the rails behind them. Submit your agent <a class="sublink" href="https://docs.google.com/forms/d/e/1FAIpQLSc1O44cbRx6TxPGcqmDrTiEwnACY1mY4sGWcmPnNfIM9dMm3w/viewform?usp=dialog" target="_blank" rel="noopener">here</a>.</p>
     <div class="segwrap">
       <div class="seg" role="tablist" aria-label="View">
         <button role="tab" data-tab="agents" aria-selected="true">Agents</button>
