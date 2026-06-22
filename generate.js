@@ -39,6 +39,7 @@ const AGENTS = [
     { slug: 'ichatwithgpt', name: 'iChatWithGPT', tag: 'AI in iMessage, via Siri',          url: 'https://ichatwithgpt.com' },
   ]},
   { group: 'Travel', items: [
+    { slug: 'soar', name: 'Soar', tag: 'Your AI travel advisor',     url: 'https://www.joinsoar.co' },
     { slug: 'miso', name: 'Miso', tag: 'Books your travel by text', url: 'https://www.miso.com' },
   ]},
   { group: 'Dating & Social', items: [
@@ -134,7 +135,8 @@ function featured(f) {
       </section>`;
 }
 
-const agentCount = AGENTS.reduce((n, g) => n + g.items.length, 0) + 1; // + featured Soar
+const agentSlugs = new Set([FEATURED.slug, ...AGENTS.flatMap(g => g.items.map(i => i.slug))]);
+const agentCount = agentSlugs.size; // distinct agents (Soar counted once across featured + Travel)
 const infraCount = INFRA.reduce((n, g) => n + g.items.length, 0);
 
 const html = `<!DOCTYPE html>
@@ -142,9 +144,9 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>iMessage Agent Marketplace</title>
+<title>iMessage Agent Store</title>
 <meta name="description" content="A map of the agents you can text on iOS and the rails behind them.">
-<meta property="og:title" content="iMessage Agent Marketplace">
+<meta property="og:title" content="iMessage Agent Store">
 <meta property="og:description" content="A map of the agents you can text on iOS and the rails behind them.">
 <style>
   :root{ --bg:#fff; --text:#1d1d1f; --sec:#6e6e73; --line:#d2d2d7; --fill:#f5f5f7; }
@@ -155,7 +157,17 @@ const html = `<!DOCTYPE html>
     -webkit-font-smoothing:antialiased;line-height:1.45}
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
-  header{text-align:center;padding:78px 0 0}
+  header{text-align:center;padding:104px 0 0}
+  .hero-msg{display:flex;justify-content:center;margin:0 0 34px}
+  .bubble{position:relative;display:inline-block;max-width:88%;
+    background:#0a84ff;color:#fff;font-size:clamp(15px,2.2vw,17px);font-weight:500;line-height:1.25;
+    padding:11px 18px;border-radius:21px;box-shadow:0 8px 22px rgba(10,132,255,.30);
+    animation:pop .55s cubic-bezier(.22,1,.36,1) both}
+  .bubble::before{content:"";position:absolute;z-index:0;bottom:-1px;right:-7px;width:20px;height:20px;
+    background:#0a84ff;border-bottom-left-radius:16px}
+  .bubble::after{content:"";position:absolute;z-index:1;bottom:-1px;right:-11px;width:13px;height:20px;
+    background:var(--bg);border-bottom-left-radius:11px}
+  @keyframes pop{from{opacity:0;transform:translateY(9px) scale(.96)}to{opacity:1;transform:none}}
   h1{font-size:clamp(32px,6vw,52px);font-weight:600;letter-spacing:-0.03em;margin:0 0 14px;line-height:1.05}
   .sub{font-size:clamp(15px,2.4vw,19px);color:var(--sec);margin:0 auto;max-width:44ch}
   .sublink{color:var(--text);font-weight:600;text-decoration:underline;text-underline-offset:2px}
@@ -208,7 +220,8 @@ const html = `<!DOCTYPE html>
   footer .muted{font-size:12px;margin-top:8px;color:var(--sec)}
 
   @media(max-width:600px){
-    header{padding:48px 0 0}
+    header{padding:68px 0 0}
+    .hero-msg{margin:0 0 26px}
     .feat{flex-direction:column;text-align:center;gap:16px;padding:24px 20px;border-radius:22px}
     .feat-tag{margin-left:auto;margin-right:auto}
     .feat-cta{width:100%}
@@ -222,7 +235,8 @@ const html = `<!DOCTYPE html>
 </head>
 <body>
   <header class="wrap">
-    <h1>iMessage Agent Marketplace</h1>
+    <div class="hero-msg"><span class="bubble">Book my trip to Tokyo ✈️</span></div>
+    <h1>iMessage Agent Store</h1>
     <p class="sub">A map of the agents you can text on iOS and the rails behind them. Submit your agent <a class="sublink" href="https://docs.google.com/forms/d/e/1FAIpQLSc1O44cbRx6TxPGcqmDrTiEwnACY1mY4sGWcmPnNfIM9dMm3w/viewform?usp=dialog" target="_blank" rel="noopener">here</a>.</p>
     <div class="segwrap">
       <div class="seg" role="tablist" aria-label="View">
