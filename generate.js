@@ -69,7 +69,6 @@ const INFRA = [
     { slug: 'loopmessage',  name: 'LoopMessage',  tag: 'iMessage API for business',    url: 'https://loopmessage.com' },
     { slug: 'blooio',       name: 'Blooio',       tag: 'Flat-rate iMessage API',       url: 'https://blooio.com' },
     { slug: 'tuco',         name: 'Tuco',         tag: 'iMessage on real iPhones',     url: 'https://tuco.ai' },
-    { slug: 'agentmessage', name: 'AgentMessage', tag: 'Messaging built for agents',   url: 'https://agentmessage.io' },
   ]},
   { group: 'Open source', items: [
     { slug: 'bluebubbles', name: 'BlueBubbles', tag: 'Open-source iMessage server', url: 'https://bluebubbles.app' },
