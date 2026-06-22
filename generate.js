@@ -118,7 +118,7 @@ function featured(f) {
   const icon = logo ? `<img src="${esc(logo)}" alt="${esc(f.name)} logo" width="96" height="96">` : '';
   const sms = smsHref(f.slug);
   const cta = sms
-    ? `<a class="btn primary" href="${esc(sms)}">Text Soar to start</a>\n          <a class="btn ghost" href="${esc(f.url)}" target="_blank" rel="noopener">Learn more</a>`
+    ? `<a class="btn primary" href="${esc(sms)}">Text Soar Now</a>\n          <a class="btn ghost" href="${esc(f.url)}" target="_blank" rel="noopener">Learn more</a>`
     : `<a class="btn primary" href="${esc(f.url)}" target="_blank" rel="noopener">Try Soar</a>`;
   return `
       <section class="spotlight">
