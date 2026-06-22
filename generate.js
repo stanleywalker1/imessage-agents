@@ -144,8 +144,23 @@ const html = `<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>iMessage Agent Store</title>
 <meta name="description" content="A map of the agents you can text on iOS and the rails behind them.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://textagent.store/">
+<meta property="og:site_name" content="iMessage Agent Store">
 <meta property="og:title" content="iMessage Agent Store">
 <meta property="og:description" content="A map of the agents you can text on iOS and the rails behind them.">
+<meta property="og:image" content="https://textagent.store/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="iMessage Agent Store">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="iMessage Agent Store">
+<meta name="twitter:description" content="A map of the agents you can text on iOS and the rails behind them.">
+<meta name="twitter:image" content="https://textagent.store/assets/og.png">
 <style>
   :root{ --bg:#fff; --text:#1d1d1f; --sec:#6e6e73; --line:#d2d2d7; --fill:#f5f5f7; }
   *{box-sizing:border-box}
