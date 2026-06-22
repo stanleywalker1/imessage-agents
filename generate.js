@@ -12,6 +12,8 @@ const LOGO_DIR = path.join(__dirname, 'assets', 'logos');
 const NUMBERS = {
   soar:         '+14242492855',
   orchid:       '+14152999916',
+  caddy:        '+12064039093',
+  tomo:         '+14157700508',
   sidekicks:    '+16282134346',
   miso:         '+16504054503',
   alfi:         '+13104609758',
