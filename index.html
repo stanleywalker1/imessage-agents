@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>iMessage Agents</title>
+<meta name="description" content="The AI agents you can text, and the infrastructure behind them.">
+<meta property="og:title" content="iMessage Agents">
+<meta property="og:description" content="The AI agents you can text, and the infrastructure behind them.">
+<style>
+  :root{
+    --bg:#fff; --text:#1d1d1f; --sec:#6e6e73; --line:#d2d2d7; --fill:#f5f5f7;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.4}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+  header{text-align:center;padding:72px 0 0}
+  h1{font-size:clamp(30px,5.4vw,46px);font-weight:600;letter-spacing:-0.025em;margin:0 0 12px}
+  .sub{font-size:clamp(15px,2.4vw,19px);color:var(--sec);margin:0 auto;max-width:34ch}
+  .segwrap{text-align:center}
+  .seg{display:inline-flex;background:var(--fill);border-radius:980px;padding:3px;margin:36px auto 0;gap:2px}
+  .seg button{appearance:none;border:0;background:transparent;color:var(--text);font:inherit;
+    font-size:14px;font-weight:500;padding:8px 22px;border-radius:980px;cursor:pointer;transition:background .2s,box-shadow .2s}
+  .seg button[aria-selected="true"]{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12);font-weight:600}
+  main{padding:8px 0 70px}
+  .view{display:none}
+  .view.active{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .vert{padding-top:40px}
+  .vert h2{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sec);margin:0 0 20px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:34px 18px}
+  .app{display:flex;flex-direction:column;align-items:center;text-align:center;gap:11px;padding:4px;border-radius:18px;transition:transform .15s ease}
+  .app:hover{transform:translateY(-4px)}
+  .icon{width:72px;height:72px;border-radius:16px;overflow:hidden;background:#fff;
+    box-shadow:0 1px 5px rgba(0,0,0,.10);border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;flex:none}
+  .icon img{width:100%;height:100%;object-fit:cover;display:block}
+  .icon.letter{font-size:30px;font-weight:600;color:var(--sec);background:var(--fill)}
+  .name{font-size:15px;font-weight:600;letter-spacing:-0.01em}
+  .tag{font-size:12.5px;color:var(--sec);line-height:1.3;max-width:19ch}
+  footer{text-align:center;padding:26px 0 70px;color:var(--sec);font-size:12px}
+  footer .hr{height:1px;background:var(--line);max-width:1000px;margin:0 auto 26px}
+  @media(max-width:600px){
+    header{padding:46px 0 0}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:26px 10px}
+    .icon{width:60px;height:60px;border-radius:14px}
+    .name{font-size:14px}
+    .tag{font-size:11.5px}
+  }
+</style>
+</head>
+<body>
+  <header class="wrap">
+    <h1>iMessage Agents</h1>
+    <p class="sub">The AI agents you can text, and the rails behind them.</p>
+    <div class="segwrap">
+      <div class="seg" role="tablist" aria-label="View">
+        <button role="tab" data-tab="agents" aria-selected="true">Agents</button>
+        <button role="tab" data-tab="infra" aria-selected="false">Infrastructure</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="view" id="agents" role="tabpanel">
+
+      <section class="vert">
+        <h2>Assistants</h2>
+        <div class="grid">
+          <a class="app" href="https://poke.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/poke.png" alt="Poke logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Poke</span>
+        <span class="tag">Texting-first personal assistant</span>
+      </a>
+          <a class="app" href="https://www.lindy.ai" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/lindy.png" alt="Lindy logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Lindy</span>
+        <span class="tag">AI executive assistant</span>
+      </a>
+          <a class="app" href="https://caddy.app" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/caddy.png" alt="Caddy logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Caddy</span>
+        <span class="tag">Handles your work, by text</span>
+      </a>
+          <a class="app" href="https://orchid.ai" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/orchid.png" alt="Orchid logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Orchid</span>
+        <span class="tag">Runs your day</span>
+      </a>
+          <a class="app" href="https://www.tomo.ai" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/tomo.png" alt="Tomo logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Tomo</span>
+        <span class="tag">AI that lives in your texts</span>
+      </a>
+          <a class="app" href="https://www.trymartin.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/martin.png" alt="Martin logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Martin</span>
+        <span class="tag">A Jarvis you can text</span>
+      </a>
+          <a class="app" href="https://sidekicks.chat" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/sidekicks.png" alt="Sidekicks logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Sidekicks</span>
+        <span class="tag">Text an AI on any phone</span>
+      </a>
+          <a class="app" href="https://ichatwithgpt.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/ichatwithgpt.png" alt="iChatWithGPT logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">iChatWithGPT</span>
+        <span class="tag">AI in iMessage, via Siri</span>
+      </a>
+        </div>
+      </section>
+
+      <section class="vert">
+        <h2>Travel</h2>
+        <div class="grid">
+          <a class="app" href="https://www.joinsoar.co" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/soar.png" alt="Soar logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Soar</span>
+        <span class="tag">Your AI travel advisor</span>
+      </a>
+          <a class="app" href="https://www.miso.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/miso.png" alt="Miso logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Miso</span>
+        <span class="tag">Books your travel by text</span>
+      </a>
+        </div>
+      </section>
+
+      <section class="vert">
+        <h2>Dating &amp; Social</h2>
+        <div class="grid">
+          <a class="app" href="https://ditto.ai" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/ditto.png" alt="Ditto logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Ditto</span>
+        <span class="tag">AI matchmaker on iMessage</span>
+      </a>
+          <a class="app" href="https://series.so" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/series.png" alt="Series logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Series</span>
+        <span class="tag">Warm intros, by text</span>
+      </a>
+          <a class="app" href="https://www.text.ai" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/alfi.png" alt="Alfi logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Alfi</span>
+        <span class="tag">AI for the group chat</span>
+      </a>
+        </div>
+      </section>
+
+      <section class="vert">
+        <h2>Money</h2>
+        <div class="grid">
+          <a class="app" href="https://fliptexts.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/flip.png" alt="Flip logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Flip</span>
+        <span class="tag">Your money, by text</span>
+      </a>
+        </div>
+      </section>
+
+      <section class="vert">
+        <h2>Health</h2>
+        <div class="grid">
+          <a class="app" href="https://bodybuddy.app" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/bodybuddy.png" alt="BodyBuddy logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">BodyBuddy</span>
+        <span class="tag">AI health coach</span>
+      </a>
+          <a class="app" href="https://www.nudge.gs" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/nudge.png" alt="Nudge logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Nudge</span>
+        <span class="tag">Daily fitness coaching</span>
+      </a>
+        </div>
+      </section>
+
+      <section class="vert">
+        <h2>Careers</h2>
+        <div class="grid">
+          <a class="app" href="https://www.getclera.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/clera.png" alt="Clera logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Clera</span>
+        <span class="tag">Your AI talent agent</span>
+      </a>
+        </div>
+      </section>
+    </div>
+    <div class="view" id="infra" role="tabpanel">
+
+      <section class="vert">
+        <h2>APIs &amp; Platforms</h2>
+        <div class="grid">
+          <a class="app" href="https://linqapp.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/linq.png" alt="Linq logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Linq</span>
+        <span class="tag">Blue-bubble rails for agents</span>
+      </a>
+          <a class="app" href="https://photon.codes" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/photon.png" alt="Photon logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Photon</span>
+        <span class="tag">Deploy agents to iMessage</span>
+      </a>
+          <a class="app" href="https://www.sendblue.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/sendblue.png" alt="Sendblue logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Sendblue</span>
+        <span class="tag">iMessage API, no Mac needed</span>
+      </a>
+          <a class="app" href="https://www.trychert.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/chert.png" alt="Chert logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Chert</span>
+        <span class="tag">“Twilio for iMessage”</span>
+      </a>
+          <a class="app" href="https://loopmessage.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/loopmessage.png" alt="LoopMessage logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">LoopMessage</span>
+        <span class="tag">iMessage API for business</span>
+      </a>
+          <a class="app" href="https://blooio.com" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/blooio.png" alt="Blooio logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Blooio</span>
+        <span class="tag">Flat-rate iMessage API</span>
+      </a>
+          <a class="app" href="https://tuco.ai" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/tuco.png" alt="Tuco logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Tuco</span>
+        <span class="tag">iMessage on real iPhones</span>
+      </a>
+          <a class="app" href="https://agentmessage.io" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/agentmessage.png" alt="AgentMessage logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">AgentMessage</span>
+        <span class="tag">Messaging built for agents</span>
+      </a>
+        </div>
+      </section>
+
+      <section class="vert">
+        <h2>Open source</h2>
+        <div class="grid">
+          <a class="app" href="https://bluebubbles.app" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/bluebubbles.png" alt="BlueBubbles logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">BlueBubbles</span>
+        <span class="tag">Open-source iMessage server</span>
+      </a>
+        </div>
+      </section>
+
+      <section class="vert">
+        <h2>Apple official</h2>
+        <div class="grid">
+          <a class="app" href="https://register.apple.com/resources/messages" target="_blank" rel="noopener">
+        <span class="icon"><img src="assets/logos/apple.png" alt="Messages for Business logo" loading="lazy" width="72" height="72"></span>
+        <span class="name">Messages for Business</span>
+        <span class="tag">Apple’s official agent lane</span>
+      </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="hr"></div>
+    <p>17 agents · 10 infrastructure providers · snapshot June 2026</p>
+  </footer>
+
+<script>
+  var tabs = document.querySelectorAll('.seg button');
+  var views = { agents: document.getElementById('agents'), infra: document.getElementById('infra') };
+  function show(tab){
+    tabs.forEach(function(x){ x.setAttribute('aria-selected', x.dataset.tab === tab); });
+    Object.keys(views).forEach(function(k){ views[k].classList.toggle('active', k === tab); });
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.dataset.tab); history.replaceState(null, '', '#' + t.dataset.tab); });
+  });
+  var init = (location.hash || '#agents').slice(1);
+  show(views[init] ? init : 'agents');
+</script>
+</body>
+</html>
