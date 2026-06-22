@@ -24,7 +24,7 @@ const NUMBERS = {
 // Featured / lead-gen spotlight at the very top of the Agents tab.
 const FEATURED = {
   slug: 'soar', name: 'Soar', url: 'https://www.joinsoar.co',
-  tag: 'Your personal travel companion. It learns how you travel from your inbox, then plans, books, and manages every trip right in your texts.',
+  tag: 'Your personal travel companion. It learns how you travel from your inbox, then plans, books, and manages every trip.',
 };
 
 const AGENTS = [
