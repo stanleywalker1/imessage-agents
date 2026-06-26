@@ -70,6 +70,7 @@ const INFRA = [
     { slug: 'loopmessage',  name: 'LoopMessage',  tag: 'iMessage API for business',    url: 'https://loopmessage.com' },
     { slug: 'blooio',       name: 'Blooio',       tag: 'Flat-rate iMessage API',       url: 'https://blooio.com' },
     { slug: 'tuco',         name: 'Tuco',         tag: 'iMessage on real iPhones',     url: 'https://tuco.ai' },
+    { slug: 'agentphone',   name: 'AgentPhone',   tag: 'Phone numbers for AI agents',  url: 'https://agentphone.ai' },
   ]},
   { group: 'Open source', items: [
     { slug: 'bluebubbles', name: 'BlueBubbles', tag: 'Open-source iMessage server', url: 'https://bluebubbles.app' },
