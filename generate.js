@@ -76,7 +76,7 @@ const INFRA = [
     { slug: 'bluebubbles', name: 'BlueBubbles', tag: 'Open-source iMessage server', url: 'https://bluebubbles.app' },
   ]},
   { group: 'Apple official', items: [
-    { slug: 'apple', name: 'Messages for Business', tag: 'Apple’s official agent lane', url: 'https://register.apple.com/resources/messages' },
+    { slug: 'messages-for-business', name: 'Messages for Business', tag: 'Apple’s official agent lane', url: 'https://register.apple.com/resources/messages' },
   ]},
 ];
 
