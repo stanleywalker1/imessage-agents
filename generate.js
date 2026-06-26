@@ -44,14 +44,14 @@ const AGENTS = [
     { slug: 'howie',        name: 'Howie',        tag: 'AI scheduling secretary',           url: 'https://howie.com' },
     { slug: 'sauna',        name: 'Sauna',        tag: 'AI coworker you text',              url: 'https://www.sauna.ai' },
     { slug: 'duckbill',     name: 'Duckbill',     tag: 'AI + human assistant',             url: 'https://www.getduckbill.com' },
-    { slug: 'karpo',        name: 'Karpo',        tag: 'AI concierge in iMessage',         url: 'https://app.karpo.ai' },
     { slug: 'allora',       name: 'Allora',       tag: 'Reminders, by text',               url: 'https://textallora.com' },
     { slug: 'super',        name: 'Super',        tag: 'Get things done by text',          url: 'https://getsupers.com' },
     { slug: 'eve',          name: 'Eve',          tag: 'AI work automation',               url: 'https://eve.new' },
   ]},
   { group: 'Travel', items: [
-    { slug: 'soar', name: 'Soar', tag: 'Your AI travel companion',   url: 'https://www.joinsoar.co' },
-    { slug: 'miso', name: 'Miso', tag: 'Books your travel by text', url: 'https://www.miso.com' },
+    { slug: 'soar',  name: 'Soar',  tag: 'Your AI travel companion',   url: 'https://www.joinsoar.co' },
+    { slug: 'miso',  name: 'Miso',  tag: 'Books your travel by text', url: 'https://www.miso.com' },
+    { slug: 'karpo', name: 'Karpo', tag: 'AI travel concierge by text', url: 'https://app.karpo.ai' },
   ]},
   { group: 'Dating & Social', items: [
     { slug: 'ditto',  name: 'Ditto',  tag: 'AI matchmaker on iMessage', url: 'https://ditto.ai' },
