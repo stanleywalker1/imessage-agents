@@ -20,6 +20,7 @@ const NUMBERS = {
   alfi:         '+13104609758',
   series:       '+14155057855',
   allora:       '+16504415695',
+  karpo:        '+16462380222',
   nudge:        '+16452438876',
   clera:        '+16505397073',
   linq:         '+14158707772', // Linq's public "text the demo agent" number
