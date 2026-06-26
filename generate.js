@@ -10,6 +10,7 @@ const LOGO_DIR = path.join(__dirname, 'assets', 'logos');
 // Public numbers anyone can text directly (E.164). Filled from the research team.
 // slug -> '+1XXXXXXXXXX'
 const NUMBERS = {
+  '222':        '+12158331455',
   soar:         '+14242492855',
   orchid:       '+14152999916',
   caddy:        '+12064039093',
@@ -55,6 +56,7 @@ const AGENTS = [
     { slug: 'ditto',  name: 'Ditto',  tag: 'AI matchmaker on iMessage', url: 'https://ditto.ai' },
     { slug: 'series', name: 'Series', tag: 'Warm intros, by text',      url: 'https://series.so' },
     { slug: 'boardy', name: 'Boardy', tag: 'AI networking super-connector', url: 'https://www.boardy.ai' },
+    { slug: '222',    name: '222',    tag: 'Meet strangers IRL',       url: 'https://222.place' },
     { slug: 'alfi',   name: 'Alfi',   tag: 'AI for the group chat',     url: 'https://www.text.ai' },
   ]},
   { group: 'Money', items: [
