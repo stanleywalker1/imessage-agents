@@ -18,6 +18,7 @@ const NUMBERS = {
   miso:         '+16504054503',
   alfi:         '+13104609758',
   series:       '+14155057855',
+  allora:       '+16504415695',
   nudge:        '+16452438876',
   clera:        '+16505397073',
   linq:         '+14158707772', // Linq's public "text the demo agent" number
@@ -38,6 +39,13 @@ const AGENTS = [
     { slug: 'tomo',         name: 'Tomo',         tag: 'AI that lives in your texts',       url: 'https://www.tomo.ai' },
     { slug: 'martin',       name: 'Martin',       tag: 'A Jarvis you can text',             url: 'https://www.trymartin.com' },
     { slug: 'sidekicks',    name: 'Sidekicks',    tag: 'Text an AI on any phone',           url: 'https://sidekicks.chat' },
+    { slug: 'howie',        name: 'Howie',        tag: 'AI scheduling secretary',           url: 'https://howie.com' },
+    { slug: 'sauna',        name: 'Sauna',        tag: 'AI coworker you text',              url: 'https://www.sauna.ai' },
+    { slug: 'duckbill',     name: 'Duckbill',     tag: 'AI + human assistant',             url: 'https://www.getduckbill.com' },
+    { slug: 'karpo',        name: 'Karpo',        tag: 'AI concierge in iMessage',         url: 'https://app.karpo.ai' },
+    { slug: 'allora',       name: 'Allora',       tag: 'Reminders, by text',               url: 'https://textallora.com' },
+    { slug: 'super',        name: 'Super',        tag: 'Get things done by text',          url: 'https://getsupers.com' },
+    { slug: 'eve',          name: 'Eve',          tag: 'AI work automation',               url: 'https://eve.new' },
   ]},
   { group: 'Travel', items: [
     { slug: 'soar', name: 'Soar', tag: 'Your AI travel companion',   url: 'https://www.joinsoar.co' },
@@ -50,11 +58,13 @@ const AGENTS = [
     { slug: 'alfi',   name: 'Alfi',   tag: 'AI for the group chat',     url: 'https://www.text.ai' },
   ]},
   { group: 'Money', items: [
-    { slug: 'flip', name: 'Flip', tag: 'Your money, by text', url: 'https://fliptexts.com' },
+    { slug: 'flip',     name: 'Flip',      tag: 'Your money, by text',    url: 'https://fliptexts.com' },
+    { slug: 'coinvest', name: 'Co-Invest', tag: 'Trade markets by text',  url: 'https://www.liquid.trade/coinvest' },
   ]},
   { group: 'Health', items: [
-    { slug: 'bodybuddy', name: 'BodyBuddy', tag: 'AI health coach',        url: 'https://bodybuddy.app' },
-    { slug: 'nudge',     name: 'Nudge',     tag: 'Daily fitness coaching', url: 'https://www.nudge.gs' },
+    { slug: 'bodybuddy',   name: 'BodyBuddy',   tag: 'AI health coach',          url: 'https://bodybuddy.app' },
+    { slug: 'nudge',       name: 'Nudge',       tag: 'Daily fitness coaching',   url: 'https://www.nudge.gs' },
+    { slug: 'caresupport', name: 'CareSupport', tag: 'Care coordination by text', url: 'https://caresupport.com' },
   ]},
   { group: 'Careers', items: [
     { slug: 'clera', name: 'Clera', tag: 'Your AI talent agent', url: 'https://www.getclera.com' },
