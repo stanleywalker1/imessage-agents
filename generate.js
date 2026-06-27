@@ -54,10 +54,10 @@ const AGENTS = [
     { slug: 'karpo', name: 'Karpo', tag: 'AI travel concierge by text', url: 'https://app.karpo.ai' },
   ]},
   { group: 'Dating & Social', items: [
+    { slug: '222',    name: '222',    tag: 'IRL social facilitator',   url: 'https://222.place' },
     { slug: 'ditto',  name: 'Ditto',  tag: 'AI matchmaker on iMessage', url: 'https://ditto.ai' },
     { slug: 'series', name: 'Series', tag: 'Warm intros, by text',      url: 'https://series.so' },
     { slug: 'boardy', name: 'Boardy', tag: 'AI networking super-connector', url: 'https://www.boardy.ai' },
-    { slug: '222',    name: '222',    tag: 'IRL social facilitator',   url: 'https://222.place' },
     { slug: 'alfi',   name: 'Alfi',   tag: 'AI for the group chat',     url: 'https://www.text.ai' },
   ]},
   { group: 'Money', items: [
