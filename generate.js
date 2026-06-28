@@ -328,12 +328,6 @@ const html = `<!DOCTYPE html>
         <button role="tab" data-tab="agents" aria-selected="true">Agents</button>
         <button role="tab" data-tab="infra" aria-selected="false">Infrastructure</button>
       </div>
-      <div class="gchat-wrap">
-        <button class="gchat" id="gchat-btn" aria-haspopup="dialog">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-          Text all ${allNumbers.length} agents
-        </button>
-      </div>
     </div>
   </header>
 
@@ -353,27 +347,6 @@ ${section(INFRA)}
     <p class="muted">${agentCount} agents · ${infraCount} infrastructure providers · snapshot June 2026</p>
   </footer>
 
-<div class="sheet-overlay" id="sheet-overlay" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
-  <div class="sheet">
-    <div class="sheet-head">
-      <span class="sheet-title" id="sheet-title">Text all agents</span>
-      <button class="sheet-close" id="sheet-close" aria-label="Close">&times;</button>
-    </div>
-    <div class="sheet-body">
-      <div class="sheet-notice">
-        <p>iOS only opens one number at a time from a web link — group chat links aren't supported by Apple. Copy all numbers below and paste them into a new group conversation in Messages.</p>
-        <button class="sheet-copy-btn" id="sheet-copy">Copy all numbers</button>
-      </div>
-      <div class="sheet-list">
-        ${numberRows.map(r => `<div class="sheet-row">
-          <span class="sheet-name">${esc(r.name)}</span>
-          <span class="sheet-num">${esc(r.num)}</span>
-          <a class="msg" href="sms:${esc(r.num)}">Text</a>
-        </div>`).join('\n        ')}
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
   var tabs = document.querySelectorAll('.seg button');
@@ -388,38 +361,6 @@ ${section(INFRA)}
   var init = (location.hash || '#agents').slice(1);
   show(views[init] ? init : 'agents');
 
-  // Sheet
-  var gchatBtn = document.getElementById('gchat-btn');
-  var sheetOverlay = document.getElementById('sheet-overlay');
-  var sheetClose = document.getElementById('sheet-close');
-  var sheetCopy = document.getElementById('sheet-copy');
-  var sheetNums = ${JSON.stringify(allNumbers)};
-
-  function openSheet(){ sheetOverlay.classList.add('open'); sheetClose.focus(); }
-  function closeSheet(){ sheetOverlay.classList.remove('open'); gchatBtn.focus(); }
-
-  gchatBtn.addEventListener('click', openSheet);
-  sheetClose.addEventListener('click', closeSheet);
-  sheetOverlay.addEventListener('click', function(e){ if(e.target === sheetOverlay) closeSheet(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && sheetOverlay.classList.contains('open')) closeSheet(); });
-
-  sheetCopy.addEventListener('click', function(){
-    var text = sheetNums.join('\\n');
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done, fallback);
-    } else { fallback(); }
-    function done(){
-      sheetCopy.textContent = 'Copied!';
-      setTimeout(function(){ sheetCopy.textContent = 'Copy all numbers'; }, 2200);
-    }
-    function fallback(){
-      var ta = document.createElement('textarea');
-      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.focus(); ta.select();
-      try{ document.execCommand('copy'); done(); } catch(e){}
-      document.body.removeChild(ta);
-    }
-  });
 </script>
 </body>
 </html>
