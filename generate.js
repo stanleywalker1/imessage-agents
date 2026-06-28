@@ -154,6 +154,18 @@ const agentSlugs = new Set([FEATURED.slug, ...AGENTS.flatMap(g => g.items.map(i 
 const agentCount = agentSlugs.size; // distinct agents (Soar counted once across featured + Travel)
 const infraCount = INFRA.reduce((n, g) => n + g.items.length, 0);
 
+const allNumbers = Object.values(NUMBERS);
+
+// Build a name+url lookup for sheet rows
+const allItems = [FEATURED, ...AGENTS.flatMap(g => g.items), ...INFRA.flatMap(g => g.items)];
+const itemBySlug = {};
+allItems.forEach(a => { itemBySlug[a.slug] = a; });
+
+const numberRows = Object.entries(NUMBERS).map(([slug, num]) => {
+  const item = itemBySlug[slug] || { name: slug, url: '' };
+  return { name: item.name, num, url: item.url };
+});
+
 const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,8 +181,8 @@ const html = `<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>iMessage Agent Store</title>
 <meta name="description" content="A map of the agents you can text on iOS and the rails behind them.">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
@@ -253,6 +265,45 @@ const html = `<!DOCTYPE html>
   footer a:hover{opacity:.7}
   footer .muted{font-size:12px;margin-top:8px;color:var(--sec)}
 
+  .gchat-wrap{text-align:center;margin-top:14px;padding-bottom:4px}
+  .gchat{appearance:none;border:0;cursor:pointer;font:inherit;
+    display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+    color:#0a84ff;background:rgba(10,132,255,.09);border-radius:980px;
+    padding:7px 17px;transition:background .2s}
+  .gchat:hover{background:rgba(10,132,255,.16)}
+  .gchat svg{width:13px;height:13px;flex:none;margin-top:-1px}
+
+  /* Bottom sheet */
+  .sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.38);
+    display:flex;align-items:flex-end;justify-content:center;
+    z-index:200;opacity:0;pointer-events:none;transition:opacity .22s}
+  .sheet-overlay.open{opacity:1;pointer-events:auto}
+  .sheet{background:#fff;border-radius:22px 22px 0 0;width:100%;max-width:480px;
+    max-height:82vh;overflow:hidden;display:flex;flex-direction:column;
+    transform:translateY(100%);transition:transform .38s cubic-bezier(.22,1,.36,1)}
+  .sheet-overlay.open .sheet{transform:translateY(0)}
+  .sheet-head{display:flex;align-items:center;justify-content:space-between;
+    padding:22px 24px 16px;border-bottom:1px solid var(--line)}
+  .sheet-title{font-size:17px;font-weight:600;letter-spacing:-0.01em}
+  .sheet-close{appearance:none;border:0;background:rgba(0,0,0,.07);color:var(--text);
+    width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:20px;line-height:30px;
+    text-align:center;flex:none;transition:background .15s;padding:0}
+  .sheet-close:hover{background:rgba(0,0,0,.13)}
+  .sheet-body{overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+  .sheet-notice{padding:18px 24px 18px;background:var(--fill);border-bottom:1px solid var(--line)}
+  .sheet-notice p{font-size:13.5px;color:var(--sec);margin:0 0 14px;line-height:1.5}
+  .sheet-copy-btn{display:block;width:100%;text-align:center;
+    font-size:14px;font-weight:600;padding:11px 22px;border-radius:980px;
+    background:var(--text);color:#fff;border:0;cursor:pointer;
+    transition:opacity .2s;font:inherit}
+  .sheet-copy-btn:hover{opacity:.85}
+  .sheet-list{padding:6px 24px 48px}
+  .sheet-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .sheet-row:last-child{border-bottom:0}
+  .sheet-name{font-size:15px;font-weight:600;flex:1;min-width:0}
+  .sheet-num{font-size:13px;color:var(--sec);flex:none}
+  .sheet-row .msg{flex:none}
+
   @media(max-width:600px){
     header{padding:68px 22px 0}
     .hero-msg{margin:0 0 26px}
@@ -277,6 +328,12 @@ const html = `<!DOCTYPE html>
         <button role="tab" data-tab="agents" aria-selected="true">Agents</button>
         <button role="tab" data-tab="infra" aria-selected="false">Infrastructure</button>
       </div>
+      <div class="gchat-wrap">
+        <button class="gchat" id="gchat-btn" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+          Text all ${allNumbers.length} agents
+        </button>
+      </div>
     </div>
   </header>
 
@@ -296,6 +353,28 @@ ${section(INFRA)}
     <p class="muted">${agentCount} agents · ${infraCount} infrastructure providers · snapshot June 2026</p>
   </footer>
 
+<div class="sheet-overlay" id="sheet-overlay" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet">
+    <div class="sheet-head">
+      <span class="sheet-title" id="sheet-title">Text all agents</span>
+      <button class="sheet-close" id="sheet-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-notice">
+        <p>iOS only opens one number at a time from a web link — group chat links aren't supported by Apple. Copy all numbers below and paste them into a new group conversation in Messages.</p>
+        <button class="sheet-copy-btn" id="sheet-copy">Copy all numbers</button>
+      </div>
+      <div class="sheet-list">
+        ${numberRows.map(r => `<div class="sheet-row">
+          <span class="sheet-name">${esc(r.name)}</span>
+          <span class="sheet-num">${esc(r.num)}</span>
+          <a class="msg" href="sms:${esc(r.num)}">Text</a>
+        </div>`).join('\n        ')}
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   var tabs = document.querySelectorAll('.seg button');
   var views = { agents: document.getElementById('agents'), infra: document.getElementById('infra') };
@@ -308,6 +387,39 @@ ${section(INFRA)}
   });
   var init = (location.hash || '#agents').slice(1);
   show(views[init] ? init : 'agents');
+
+  // Sheet
+  var gchatBtn = document.getElementById('gchat-btn');
+  var sheetOverlay = document.getElementById('sheet-overlay');
+  var sheetClose = document.getElementById('sheet-close');
+  var sheetCopy = document.getElementById('sheet-copy');
+  var sheetNums = ${JSON.stringify(allNumbers)};
+
+  function openSheet(){ sheetOverlay.classList.add('open'); sheetClose.focus(); }
+  function closeSheet(){ sheetOverlay.classList.remove('open'); gchatBtn.focus(); }
+
+  gchatBtn.addEventListener('click', openSheet);
+  sheetClose.addEventListener('click', closeSheet);
+  sheetOverlay.addEventListener('click', function(e){ if(e.target === sheetOverlay) closeSheet(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && sheetOverlay.classList.contains('open')) closeSheet(); });
+
+  sheetCopy.addEventListener('click', function(){
+    var text = sheetNums.join('\\n');
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function done(){
+      sheetCopy.textContent = 'Copied!';
+      setTimeout(function(){ sheetCopy.textContent = 'Copy all numbers'; }, 2200);
+    }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try{ document.execCommand('copy'); done(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
 </script>
 </body>
 </html>
