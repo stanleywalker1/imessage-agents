@@ -343,7 +343,7 @@ ${section(INFRA)}
 
   <footer>
     <div class="hr"></div>
-    <p>Made by <a href="https://x.com/stannostudio" target="_blank" rel="noopener">Stanley</a></p>
+    <p>Made by <a href="https://x.com/stannostudio" target="_blank" rel="noopener">Stanley</a> · <a href="/privacy">Privacy Policy</a></p>
     <p class="muted">${agentCount} agents · ${infraCount} infrastructure providers · snapshot June 2026</p>
   </footer>
 
